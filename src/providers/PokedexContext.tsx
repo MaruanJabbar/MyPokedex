@@ -1,26 +1,32 @@
 import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction } from "react";
-import { api } from "../services";
-import { AxiosResponse } from "axios";
+import jsonData from "../data/pokemonData.json";
+
+interface PokemonSprites {
+    back_default: string | null;
+    back_female: string | null;
+    back_shiny: string | null;
+    back_shiny_female: string | null;
+    front_default: string | null;
+    front_female: string | null;
+    front_shiny: string | null;
+    front_shiny_female: string | null;
+}
 
 export interface Pokemon {
-  id: number;
-  name: string;
-  sprites: {
-    front_default: string;
-  };
-  types: { slot: number; type: { name: string } }[];
+    id: number;
+    name: string;
+    sprites: PokemonSprites;
+    types: string[];
 }
 
 interface PokedexContextProps {
   pokedex: Pokemon[];
   setPokedex: Dispatch<SetStateAction<Pokemon[]>>;
-  fetchData: (inicio: number, final: number) => Promise<void>;
 }
 
 const defaultValues: PokedexContextProps = {
   pokedex: [],
   setPokedex: () => {},
-  fetchData: async () => {},
 };
 
 export const PokedexContext = createContext<PokedexContextProps>(defaultValues);
@@ -30,23 +36,8 @@ interface PokedexProviderProps {
 }
 
 export const PokedexProvider: React.FC<PokedexProviderProps> = ({ children }) => {
-  const [pokedex, setPokedex] = useState<Pokemon[]>([]);
-
-  const fetchData = async (inicio: number, final: number) => {
-    const data: Pokemon[] = [];
-    for (let i = inicio; i <= final; i++) {
-      try {
-        const response: AxiosResponse = await api.get(`pokemon/${i}/`);
-        data.push(response.data);
-      } catch (error) {
-        console.error(`Erro ao buscar dados para o Pokémon ${i}: ${error}`);
-      }
-    }
-    setPokedex(data);
-  };
-
-
-  return <PokedexContext.Provider value={{ pokedex, setPokedex, fetchData }}>{children}</PokedexContext.Provider>;
+  const [pokedex, setPokedex] = useState<Pokemon[]>(jsonData as Pokemon[]);
+  return <PokedexContext.Provider value={{ pokedex, setPokedex }}>{children}</PokedexContext.Provider>;
 };
 
 export const usePokedexContext = (): PokedexContextProps => useContext(PokedexContext);

@@ -10,6 +10,7 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokeList }) => {
   if (pokeList.length === 0) {
     return <p>Carregando...</p>;
   }
+
   return (
     <div className="container">
       <div>

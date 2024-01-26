@@ -1,17 +1,9 @@
 import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction, useEffect } from "react";
-
-interface Pokemon {
-  id: number;
-  name: string;
-  sprites: {
-    front_default: string;
-  };
-  types: { slot: number; type: { name: string } }[];
-}
+import { Pokemon } from "./PokedexContext";
 
 interface FavoriteContextProps {
-  favoriteList: Pokemon[];
-  setFavoriteList: Dispatch<SetStateAction<Pokemon[]>>;
+  favoriteList: number[];
+  setFavoriteList: Dispatch<SetStateAction<number[]>>;
   addFavorite: (pokemon: Pokemon) => void;
   removeFavorite: (pokemon: Pokemon) => void;
 }
@@ -30,23 +22,21 @@ interface FavoriteProviderProps {
 }
 
 export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) => {
-  const [favoriteList, setFavoriteList] = useState<Pokemon[]>([]);
+  const [favoriteList, setFavoriteList] = useState<number[]>([]);
 
   useEffect(() => {
-    const loadFavoriteList = () => {
-      const storedFavoriteList = localStorage.getItem("favoriteList");
-      if (storedFavoriteList) {
-        setFavoriteList(JSON.parse(storedFavoriteList));
-      }
-    };
-    loadFavoriteList();
+    const storedFavoriteList = localStorage.getItem("favoriteList");
+    if (storedFavoriteList) {
+      const parsedList = JSON.parse(storedFavoriteList) as number[];
+      setFavoriteList(parsedList);
+    }
   }, []);
-
+  
   const addFavorite = (pokemon: Pokemon): void => {
-    const isPokemonInList = favoriteList.find((favPokemon) => favPokemon.id === pokemon.id);
+    const isPokemonInList = favoriteList.find((favPokemon) => favPokemon === pokemon.id);
 
     if (!isPokemonInList) {
-      const newList = [...favoriteList, pokemon].sort((a, b) => a.id - b.id);
+      const newList = [...favoriteList, pokemon.id].sort((a, b) => a - b);
       setFavoriteList(newList);
       localStorage.setItem("favoriteList", JSON.stringify(newList));
     } else {
@@ -55,13 +45,14 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
   };
 
   const removeFavorite = (pokemon: Pokemon): void => {
-    const newList = favoriteList.filter((favPokemon) => favPokemon.id !== pokemon.id).sort((a, b) => a.id - b.id);
+    const isPokemonInList = favoriteList.find((favPokemon) => favPokemon === pokemon.id);
 
-    if (newList.length !== favoriteList.length) {
+    if (isPokemonInList) {
+      const newList = favoriteList.filter((favPokemon) => favPokemon !== pokemon.id);
       setFavoriteList(newList);
       localStorage.setItem("favoriteList", JSON.stringify(newList));
     } else {
-      console.log("Pokemon não encontrado na lista de favoritos");
+      console.log("Pokemon não está na lista de favoritos");
     }
   };
 
