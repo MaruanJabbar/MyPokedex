@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { HomePage } from "../pages/Home";
+import { PokedexPage } from "../pages/PokedexPage";
 import { Favorite } from "../pages/FavPage";
 
 export const RoutesMain: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/Pokedex/:id" element={<PokedexPage />} />
       <Route path="/Favorite" element={<Favorite />} />
     </Routes>
   );

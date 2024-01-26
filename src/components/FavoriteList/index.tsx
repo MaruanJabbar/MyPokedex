@@ -1,24 +1,19 @@
 import React from "react";
-import styles from "./style.module.scss";
-import { PokemonCard } from "./PokemonCard";
 import { useFavoriteContext } from "../../providers/FavListContext";
+import PokemonList from "../PokemonList";
 
 interface PokemonListProps {}
 
 export const FavoriteList: React.FC<PokemonListProps> = () => {
   const { favoriteList } = useFavoriteContext();
-
+  console.log(favoriteList);
   if (favoriteList.length === 0) {
     return <p>Carregando...</p>;
   }
 
   return (
     <div className="container">
-      <ul className={styles.pokedexList}>
-        {favoriteList.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon}></PokemonCard>
-        ))}
-      </ul>
+      <PokemonList pokeList={favoriteList} />
     </div>
   );
 };

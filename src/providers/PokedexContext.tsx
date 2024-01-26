@@ -1,15 +1,26 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction } from "react";
 import { api } from "../services";
 import { AxiosResponse } from "axios";
 
+export interface Pokemon {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string;
+  };
+  types: { slot: number; type: { name: string } }[];
+}
+
 interface PokedexContextProps {
-  pokedex: any[];
-  setPokedex: React.Dispatch<React.SetStateAction<any[]>>;
+  pokedex: Pokemon[];
+  setPokedex: Dispatch<SetStateAction<Pokemon[]>>;
+  fetchData: (inicio: number, final: number) => Promise<void>;
 }
 
 const defaultValues: PokedexContextProps = {
   pokedex: [],
   setPokedex: () => {},
+  fetchData: async () => {},
 };
 
 export const PokedexContext = createContext<PokedexContextProps>(defaultValues);
@@ -19,14 +30,11 @@ interface PokedexProviderProps {
 }
 
 export const PokedexProvider: React.FC<PokedexProviderProps> = ({ children }) => {
-  const [pokedex, setPokedex] = useState<any[]>([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [pokedex, setPokedex] = useState<Pokemon[]>([]);
 
-  const fetchData = async () => {
-    const data = [];
-    for (let i = 1; i <= 50; i++) {
+  const fetchData = async (inicio: number, final: number) => {
+    const data: Pokemon[] = [];
+    for (let i = inicio; i <= final; i++) {
       try {
         const response: AxiosResponse = await api.get(`pokemon/${i}/`);
         data.push(response.data);
@@ -37,7 +45,8 @@ export const PokedexProvider: React.FC<PokedexProviderProps> = ({ children }) =>
     setPokedex(data);
   };
 
-  return <PokedexContext.Provider value={{ pokedex, setPokedex }}>{children}</PokedexContext.Provider>;
+
+  return <PokedexContext.Provider value={{ pokedex, setPokedex, fetchData }}>{children}</PokedexContext.Provider>;
 };
 
 export const usePokedexContext = (): PokedexContextProps => useContext(PokedexContext);

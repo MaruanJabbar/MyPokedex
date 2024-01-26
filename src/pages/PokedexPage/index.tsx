@@ -1,11 +1,11 @@
 import React from "react";
 import { DefaultTemplate } from "../../components/DefaultTemplate";
-import { PokemonList } from "../../components/PokemonList";
+import Pokedex from "../../components/Pokedex";
 
-export const HomePage: React.FC = () => {
+export const PokedexPage: React.FC = () => {
   return (
     <DefaultTemplate>
-      <PokemonList />
+      <Pokedex/>
     </DefaultTemplate>
   );
 };

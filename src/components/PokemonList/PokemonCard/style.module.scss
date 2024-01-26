@@ -1,38 +1,38 @@
-
 .pokedexCard {
-    border: 1px solid #e0dedeea;
-    border-radius: 5px;
-    padding: 5px;
-    width: 130px;
-    height: 180px;
-  
-    &:hover .pokemonImage {
-      transform: scale(1.1);
-    }
-  
-    .pokemonImage {
-      height: auto;
-      transition: transform 0.3s ease-in-out;
-    }
+  border: 1px solid #e0dedeea;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  &:hover .pokemonImage {
+    transform: scale(1.1);
   }
-  
-  .imgContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0dedeea;
-    border-radius: 5px;
-    overflow: hidden;
+
+  .pokemonImage {
+    height: auto;
+    transition: transform 0.3s ease-in-out;
   }
-  
-  .typesList {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .favContainer{
-    position: absolute;
-    z-index: 1;
-    width: 30px;
-    height: 30px;
-  }
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0dedeea;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 120px;
+}
+
+.typesList {
+  display: flex;
+  gap: 10px;
+}
+
+.favContainer {
+  position: absolute;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}

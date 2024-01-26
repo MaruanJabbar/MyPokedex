@@ -46,7 +46,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
     const isPokemonInList = favoriteList.find((favPokemon) => favPokemon.id === pokemon.id);
 
     if (!isPokemonInList) {
-      const newList = [...favoriteList, pokemon];
+      const newList = [...favoriteList, pokemon].sort((a, b) => a.id - b.id);
       setFavoriteList(newList);
       localStorage.setItem("favoriteList", JSON.stringify(newList));
     } else {
@@ -55,7 +55,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
   };
 
   const removeFavorite = (pokemon: Pokemon): void => {
-    const newList = favoriteList.filter((favPokemon) => favPokemon.id !== pokemon.id);
+    const newList = favoriteList.filter((favPokemon) => favPokemon.id !== pokemon.id).sort((a, b) => a.id - b.id);
 
     if (newList.length !== favoriteList.length) {
       setFavoriteList(newList);

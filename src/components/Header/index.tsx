@@ -9,7 +9,7 @@ export const Header = () => {
         <div className={styles.headerContent}>
           <img src={logo} alt="" />
         </div>
-        <Link to={"/"}>PokeDex</Link>
+        <Link to={"/Pokedex/1"}>PokeDex</Link>
         <Link to={"/Favorite"}>Favoritos</Link>
       </div>
     </header>
