@@ -10,7 +10,7 @@ export const Pokedex: React.FC<PokemonListProps> = () => {
 
   const parsedId = id ? parseInt(id, 10) : 1;
 
-  const showPokedex = pokedex.slice(parsedId * 30 - 30, parsedId*30);
+  const showPokedex = pokedex.slice(parsedId * 30 - 30, parsedId * 30);
 
   if (showPokedex.length === 0) {
     return <p>Carregando...</p>;

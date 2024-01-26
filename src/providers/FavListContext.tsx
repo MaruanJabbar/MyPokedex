@@ -25,7 +25,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
   const [favoriteList, setFavoriteList] = useState<number[]>([]);
 
   useEffect(() => {
-    const storedFavoriteList = localStorage.getItem("favoriteList");
+    const storedFavoriteList = localStorage.getItem("@FAVORITE_LIST");
     if (storedFavoriteList) {
       const parsedList = JSON.parse(storedFavoriteList) as number[];
       setFavoriteList(parsedList);
@@ -38,7 +38,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
     if (!isPokemonInList) {
       const newList = [...favoriteList, pokemon.id].sort((a, b) => a - b);
       setFavoriteList(newList);
-      localStorage.setItem("favoriteList", JSON.stringify(newList));
+      localStorage.setItem("@FAVORITE_LIST", JSON.stringify(newList));
     } else {
       console.log("Pokemon já está na lista de favoritos");
     }
@@ -50,7 +50,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
     if (isPokemonInList) {
       const newList = favoriteList.filter((favPokemon) => favPokemon !== pokemon.id);
       setFavoriteList(newList);
-      localStorage.setItem("favoriteList", JSON.stringify(newList));
+      localStorage.setItem("@FAVORITE_LIST", JSON.stringify(newList));
     } else {
       console.log("Pokemon não está na lista de favoritos");
     }
