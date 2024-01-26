@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction } from "react";
+import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction, useEffect } from "react";
 
 interface Pokemon {
   id: number;
@@ -32,12 +32,23 @@ interface FavoriteProviderProps {
 export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) => {
   const [favoriteList, setFavoriteList] = useState<Pokemon[]>([]);
 
+  useEffect(() => {
+    const loadFavoriteList = () => {
+      const storedFavoriteList = localStorage.getItem("favoriteList");
+      if (storedFavoriteList) {
+        setFavoriteList(JSON.parse(storedFavoriteList));
+      }
+    };
+    loadFavoriteList();
+  }, []);
+
   const addFavorite = (pokemon: Pokemon): void => {
     const isPokemonInList = favoriteList.find((favPokemon) => favPokemon.id === pokemon.id);
 
     if (!isPokemonInList) {
       const newList = [...favoriteList, pokemon];
       setFavoriteList(newList);
+      localStorage.setItem("favoriteList", JSON.stringify(newList));
     } else {
       console.log("Pokemon já está na lista de favoritos");
     }
@@ -48,6 +59,7 @@ export const FavoriteProvider: React.FC<FavoriteProviderProps> = ({ children }) 
 
     if (newList.length !== favoriteList.length) {
       setFavoriteList(newList);
+      localStorage.setItem("favoriteList", JSON.stringify(newList));
     } else {
       console.log("Pokemon não encontrado na lista de favoritos");
     }
