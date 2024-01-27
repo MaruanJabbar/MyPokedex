@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { usePokedexContext } from "../../providers/PokedexContext";
 import PokemonList from "../PokemonList";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import styles from "./style.module.scss";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBarPokedex from "./NavBarPokedex";
 
 interface PokemonListProps {}

@@ -27,37 +27,37 @@ export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
       <ul className={styles.pokedexNavBar}>
         {id !== 1 ? (
           <li>
-            <Link to={`/pokedex/1`}>Primeira</Link>
+            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/1`}>Primeira</Link>
           </li>
         ) : (
           <li>
-            <span>Primeira</span>
+            <span className={styles.pokedexNavBarBtn}>Primeira</span>
           </li>
         )}
         {id > 5 && (
           <li>
-            <span>...</span>
+            <span className={styles.pokedexNavBarBtn}>...</span>
           </li>
         ) }
 
         {lista.map((num) => (
           <li key={num}>
-            <Link to={`/pokedex/${num}`}>{num !== 1 && num}</Link>
+            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${num}`}>{num !== 1 && num}</Link>
           </li>
         ))}
         {id < 30 && (
           <li>
-            <span>...</span>
+            <span className={styles.pokedexNavBarBtn}>...</span>
           </li>
         ) }
 
         {id !== 34 ? (
           <li>
-            <Link to={`/pokedex/${maxNumber}`}>Ultima</Link>
+            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${maxNumber}`}>Ultima</Link>
           </li>
         ) : (
           <li>
-            <span>Ultima</span>
+            <span className={styles.pokedexNavBarBtn}>Ultima</span>
           </li>
         )}
       </ul>
