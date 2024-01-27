@@ -11,3 +11,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.navHeader{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkNav{
+  background: rgb(63, 63, 63);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
