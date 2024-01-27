@@ -1,5 +1,21 @@
-.pokedexNavBar{
+.pokedexNavBar {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.pokedexNavBarBtn {
+  padding: 5px 6px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  color: blue;
+}
+
+.pokedexNavBarSpan {
+  padding: 5px 6px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  color: gray;
 }

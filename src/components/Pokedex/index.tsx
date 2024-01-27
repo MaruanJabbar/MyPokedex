@@ -30,9 +30,7 @@ export const Pokedex: React.FC<PokemonListProps> = () => {
   return (
     <div className="container">
       <PokemonList pokeList={showPokedex} />
-      <div>
-        <NavBarPokedex id={parsedId}></NavBarPokedex>
-      </div>
+      <NavBarPokedex id={parsedId}></NavBarPokedex>
     </div>
   );
 };

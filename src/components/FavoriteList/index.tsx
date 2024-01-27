@@ -9,7 +9,6 @@ export const FavoriteList: React.FC<PokemonListProps> = () => {
   const { favoriteList } = useFavoriteContext();
   const { pokedex } = usePokedexContext();
   const favPokedex: Pokemon[] = favoriteList.map((i) => pokedex[i-1]);
-  console.log(favPokedex);
   if (favoriteList.length === 0) {
     return <p>Não tem favorito .-.</p>;
   }

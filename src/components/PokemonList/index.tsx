@@ -12,7 +12,6 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokeList }) => {
   }
 
   return (
-    <div className="container">
       <div>
         <ul className={styles.pokedexList}>
           {pokeList.map((pokemon) => (
@@ -20,8 +19,6 @@ export const PokemonList: React.FC<PokemonListProps> = ({ pokeList }) => {
           ))}
         </ul>
       </div>
-      <div></div>
-    </div>
   );
 };
 

@@ -27,37 +27,51 @@ export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
       <ul className={styles.pokedexNavBar}>
         {id !== 1 ? (
           <li>
-            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/1`}>Primeira</Link>
+            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/1`}>
+              Primeira
+            </Link>
           </li>
         ) : (
           <li>
-            <span className={styles.pokedexNavBarBtn}>Primeira</span>
+            <span className={styles.pokedexNavBarSpan}>Primeira</span>
           </li>
         )}
         {id > 5 && (
           <li>
-            <span className={styles.pokedexNavBarBtn}>...</span>
+            <span className={styles.pokedexNavBarSpan}>...</span>
           </li>
-        ) }
+        )}
 
-        {lista.map((num) => (
-          <li key={num}>
-            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${num}`}>{num !== 1 && num}</Link>
-          </li>
-        ))}
+        {lista.map((num) =>
+          num !== 1 && num !== id ? (
+            <li key={num}>
+              <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${num}`}>
+                {num}
+              </Link>
+            </li>
+          ) : (
+            <li key={num}>
+              <span className={styles.pokedexNavBarSpan}>
+                {num}
+              </span>
+            </li>
+          )
+        )}
         {id < 30 && (
           <li>
-            <span className={styles.pokedexNavBarBtn}>...</span>
+            <span className={styles.pokedexNavBarSpan}>...</span>
           </li>
-        ) }
+        )}
 
         {id !== 34 ? (
           <li>
-            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${maxNumber}`}>Ultima</Link>
+            <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${maxNumber}`}>
+              Ultima
+            </Link>
           </li>
         ) : (
           <li>
-            <span className={styles.pokedexNavBarBtn}>Ultima</span>
+            <span className={styles.pokedexNavBarSpan}>Ultima</span>
           </li>
         )}
       </ul>
