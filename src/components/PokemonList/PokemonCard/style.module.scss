@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  color: black;
   &:hover .pokemonImage {
     transform: scale(1.1);
   }

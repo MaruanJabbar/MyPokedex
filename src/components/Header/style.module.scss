@@ -6,6 +6,12 @@
   border-bottom: 1px solid rgb(102, 102, 102);
 }
 
+.flexBox{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .headerContent {
   display: flex;
   align-items: center;
@@ -25,3 +31,4 @@
   padding: 10px;
   border-radius: 5px;
 }
+

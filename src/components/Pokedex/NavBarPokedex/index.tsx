@@ -12,7 +12,7 @@ export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
     const sequence = [];
 
     for (let i = Math.max(1, n - 4); i <= Math.min(maxNumber, n + 4); i++) {
-      if (i > 0) {
+      if (i > 0 && i !== 1 && i !== 34) {
         sequence.push(i);
       }
     }
@@ -51,9 +51,7 @@ export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
             </li>
           ) : (
             <li key={num}>
-              <span className={styles.pokedexNavBarSpan}>
-                {num}
-              </span>
+              <span className={styles.pokedexNavBarSpan}>{num}</span>
             </li>
           )
         )}
