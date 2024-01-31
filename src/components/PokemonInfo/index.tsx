@@ -137,7 +137,7 @@ export const PokemonInfo: React.FC = () => {
         </div>
         {pokemonInfo ? (
           <div className={styles.pokemonDescription}>
-            <p>{pokemonInfo.flavor_text_entries[2].flavor_text}</p>
+            <p>{pokemonInfo.flavor_text_entries[0].flavor_text}</p>
           </div>
         ) : null}
       </div>
