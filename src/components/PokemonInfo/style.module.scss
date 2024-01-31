@@ -1,0 +1,15 @@
+.title {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.pokemonInfoCard{
+  display: flex;
+  align-items: center;
+}
+
+.pokemonDescription{
+  max-width: 300px;
+}

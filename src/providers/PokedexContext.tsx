@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState, Dispatch, SetStateAction } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import jsonData from "../data/pokemonData.json";
 
 interface PokemonSprites {
@@ -35,9 +42,17 @@ interface PokedexProviderProps {
   children: ReactNode;
 }
 
-export const PokedexProvider: React.FC<PokedexProviderProps> = ({ children }) => {
+export const PokedexProvider: React.FC<PokedexProviderProps> = ({
+  children,
+}) => {
   const [pokedex, setPokedex] = useState<Pokemon[]>(jsonData as Pokemon[]);
-  return <PokedexContext.Provider value={{ pokedex, setPokedex }}>{children}</PokedexContext.Provider>;
+
+  return (
+    <PokedexContext.Provider value={{ pokedex, setPokedex }}>
+      {children}
+    </PokedexContext.Provider>
+  );
 };
 
-export const usePokedexContext = (): PokedexContextProps => useContext(PokedexContext);
+export const usePokedexContext = (): PokedexContextProps =>
+  useContext(PokedexContext);

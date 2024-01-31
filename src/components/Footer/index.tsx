@@ -1,9 +1,13 @@
+import styles from "./style.module.scss";
+
 export const Footer = () => {
     return (
-        <footer>
-            <p>
-                Eu sou o pezinho
-            </p>
+        <footer className={styles.footer}>
+            <div className="container">
+                <p>
+                    Eu sou o pezinho
+                </p>
+            </div>
         </footer>
     )
 }
