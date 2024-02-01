@@ -5,7 +5,7 @@ export const Footer = () => {
         <footer className={styles.footer}>
             <div className="container">
                 <p>
-                    Eu sou o pezinho
+                   :)
                 </p>
             </div>
         </footer>

@@ -10,3 +10,11 @@
 }
 
 
+
+.pokemonNumberCard{
+  @include font(var(--font-secondary), 80%, normal, 500, #919191);
+}
+
+.pokemonNameCard{
+  @include font(var(--font-secondary), 20px, normal, 500, #313131);
+}

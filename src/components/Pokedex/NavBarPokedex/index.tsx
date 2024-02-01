@@ -6,13 +6,13 @@ interface PokemonListProps {
 }
 
 export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
-  const maxNumber = 34;
+  const maxNumber = 35;
 
   const generateSequence = (n: number): number[] => {
     const sequence = [];
 
     for (let i = Math.max(1, n - 4); i <= Math.min(maxNumber, n + 4); i++) {
-      if (i > 0 && i !== 1 && i !== 34) {
+      if (i > 0 && i !== 1 && i !== 35) {
         sequence.push(i);
       }
     }
@@ -61,7 +61,7 @@ export const NavBarPokedex: React.FC<PokemonListProps> = ({ id }) => {
           </li>
         )}
 
-        {id !== 34 ? (
+        {id !== 35 ? (
           <li>
             <Link className={styles.pokedexNavBarBtn} to={`/pokedex/${maxNumber}`}>
               Ultima

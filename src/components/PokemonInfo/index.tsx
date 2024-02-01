@@ -98,7 +98,6 @@ export interface PokemonInfo {
   }[];
 }
 
-
 export const PokemonInfo: React.FC = () => {
   const { pokedex } = usePokedexContext();
   const { id } = useParams();
@@ -118,27 +117,26 @@ export const PokemonInfo: React.FC = () => {
     };
     productCreate();
   }, []);
-
-  const pokemon = pokedex[parsedId];
-  const imageId: string = `${pokemon.id - 1}`.padStart(3, "0");
-
-  const linkImage: string = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imageId}.png`;
   console.log(pokemonInfo);
+  console.log(pokemonInfo);
+
   return (
     <div className="container">
       <button>{"<---"}</button>
       <div className={styles.title}>
         <h1>{pokedex[parsedId - 1].name}</h1>
-        <span>Nº {id}</span>
+        <span>Nº {parsedId.toString().padStart(4, "0")}</span>
       </div>
       <div className={styles.pokemonInfoCard}>
         <div>
-          <img src={linkImage} alt="" />
+          <img src={pokedex[parsedId - 1].image} alt="" />
         </div>
         {pokemonInfo ? (
-          <div className={styles.pokemonDescription}>
-            <p>{pokemonInfo.flavor_text_entries[0].flavor_text}</p>
-          </div>
+          pokemonInfo.flavor_text_entries ? (
+            <div className={styles.pokemonDescription}>
+              <p>{pokemonInfo.flavor_text_entries[0].flavor_text}</p>
+            </div>
+          ) : null
         ) : null}
       </div>
     </div>

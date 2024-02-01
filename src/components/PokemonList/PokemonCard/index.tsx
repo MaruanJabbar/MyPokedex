@@ -42,8 +42,10 @@ export const PokemonCard: React.FC<PokemonProps> = ({ pokemon }) => {
         <div className={styles.imgContainer}>
           <img className={styles.pokemonImage} src={linkImagem} alt={`Imagem do ${pokemon.name}`} />
         </div>
-        <p>Nº {pokemon.id.toString().padStart(4, "0")}</p>
-        <p>{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</p>
+        <div className={styles.boxNumberName}>
+          <span className="pokemonNumberCard">Nº {pokemon.id.toString().padStart(4, "0")}</span>
+          <span className="pokemonNameCard">{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</span>
+        </div>
         <ul className={styles.typesList}>
           {pokemon.types.map((ty) => (
             <li key={crypto.randomUUID()} className={`typeContainer ${ty}`}>

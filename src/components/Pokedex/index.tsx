@@ -14,11 +14,11 @@ export const Pokedex: React.FC<PokemonListProps> = () => {
   const parsedId = id ? parseInt(id, 10) : 1;
 
   useEffect(() => {
-    if (parsedId > 34) {
-      navigate("/pokedex/34");
+    if (parsedId > 35) {
+      navigate("/pokedex/35");
     }
     if (parsedId < 1) {
-      navigate("/pokedex/1");
+      navigate("/pokedex/5");
     }
   }, []);
   const showPokedex = pokedex.slice(parsedId * 30 - 30, parsedId * 30);
